@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>我的个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            text-align: center;
+            background-color: #0B0B45;
+            color: #F5F5DC;
+            font-family: sans-serif;
+            /* 禁止页面左右滑动 */
+            overflow-x: hidden;
+            /* 设置最大宽度，防止在平板或电脑上太宽，手机上正常显示 */
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* 导航菜单布局优化 */
+        nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            background-color: #07072E;
+            padding: 10px 0;
+            border-bottom: 2px solid #8B0000;
+            overflow: hidden; /* 彻底防止菜单溢出 */
+        }
+
+        nav a {
+            color: #F5F5DC;
+            text-decoration: none;
+            font-size: 16px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            white-space: nowrap; /* 防止菜单文字换行 */
+            flex: 1;
+            text-align: center;
+        }
+
+        nav a:hover,
+        nav a.active {
+            background-color: #8B0000;
+            color: #FFFFFF;
+        }
+
+        /* 页面内容区 */
+        .page {
+            display: none;
+            padding: 30px 15px;
+            width: 100%;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        /* 图片样式优化 */
+        img {
+            border: 2px dashed #8B0000;
+            border-radius: 10px;
+            padding: 5px;
+            max-width: 100%; /* 强制图片不超出屏幕 */
+            height: auto;
+        }
+
+        /* 标题样式 */
+        .one {
+            color: #87CEEB;
+            font-size: 22px; /* 稍微缩小标题，适配小屏幕 */
+            margin-bottom: 10px;
+        }
+
+        .h {
+            font-size: 20px;
+            color: lightblue;
+            margin-top: 20px;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        .two {
+            margin-bottom: 60px;
+        }
+
+        .three {
+            color: orange;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .four {
+            margin: 60px;
+        }
+
+        .five {
+            margin: 60px;
+            color: lightblue;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .six {
+            color: red;
+            margin: 60px;
+            font-style: italic;
+        }
+
+        .seven {
+            margin: 30px;
+            color: lightblue;
+        }
+
+        .eight {
+            margin: 30px;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .second {
+            margin: 10px;
+            font-weight: bold;
+            color: yellow;
+        }
+
+        .first {
+            margin: 10px;
+            font-style: italic;
+            color: green;
+        }
+
+        /* 第二页的三个外链单独成行，避免挤在一起 */
+        #tools header > a {
+            display: block;
+            margin: 12px 0;
+            word-break: break-all;
+        }
+
+        /* 结语页 */
+        .end-text {
+            margin: 18px 0;
+            line-height: 1.9;
+            text-align: left;
+        }
+
+        .end-quote {
+            margin: 28px 0;
+            padding: 14px 16px;
+            border-left: 3px solid #8B0000;
+            background-color: #07072E;
+            border-radius: 8px;
+            color: #87CEEB;
+            font-style: italic;
+            line-height: 1.9;
+            text-align: left;
+        }
+
+        .end-sign {
+            margin-top: 30px;
+            color: #87CEEB;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 导航菜单 -->
+    <nav>
+        <a class="active" onclick="showPage('home', this)">个人主页</a>
+        <a onclick="showPage('tools', this)">我开发的小东西</a>
+        <a onclick="showPage('end', this)">结语</a>
+    </nav>
+
+    <!-- 第1页：个人主页 -->
+    <div id="home" class="page active">
+        <header>
+            <h1 class="one">欢迎来到我的个人主页喵</h1>
+            <h3>很高兴认识你啦</h3>
+        </header>
+        <main>
+            <p>我是用github部署的</p>
+            <p>这是我爸的雷霆合影</p>
+            <img src="搞笑合影.png" width="300" alt="我爸的雷霆合影">
+            <p class="h">
+                Heart Cries Alone<br>
+                我们，终究是各自孤独的岛屿
+            </p>
+            <p class="four">怎么样，这个句子帅不帅</p>
+            <p class="two">当然一下是我的一些经历</p>
+            <h3>我和AI的经历：</h3>
+            <p class="three">
+                一开始我只是拿AI查东西、问问题，后来有一次让AI帮我写了一段HTML代码，发现它居然真的能跑起来，从那开始就有点上头了。之前有个叫"安小助"的AI给我写了一份"赛博资产交接书"，把我的GitHub、MC网页版、编程工具全记下来了，还给我定了学习路线。后来每次换AI，只要把那段话发过去，它就能立刻认出我是谁，像接头一样。说实话，没有AI的话，我一个纯手机编程的人，很多坑根本爬不出来。
+            </p>
+            <p class="five">可爱的小图片</p>
+            <img src="可爱捏.png" width="400" alt="可爱的小图片">
+        </main>
+    </div>
+
+    <!-- 第2页：我开发的小东西 -->
+    <div id="tools" class="page">
+        <header>
+            <h1 class="one">我部署的网址</h1>
+            <a href="https://chenan2000285.github.io/my-home/">我第一个部署的网址，当然不如这个</a>
+            <p class="six">接下来就是我的世界在线网址，好吧</p>
+            <a href="https://chenan2000285.github.io/Eaglercraft/1.8.html">我的《我的世界》Java版 1.8.8（带触屏）</a>
+            <a href="https://chenan2000285.github.io/MCPEweb/">我的《我的世界》PE版 0.6.1（老版本）</a>
+            <p class="seven">此情奇景。放一个我的世界图吧</p>
+            <img src="我的世界.png" width="300" alt="我的世界">
+            <p class="eight">我的代码仓库网址（存放代码的地方，别人看是代码）</p>
+            <p class="second">我的个人主页仓库</p>
+            <p class="first">https://github.com/chenan2000285/my-home</p>
+            <p class="second">我的 Java版 MC 仓库</p>
+            <p class="first">https://github.com/chenan2000285/Eaglercraft</p>
+            <p class="second">我的 PE版 MC 仓库</p>
+            <p class="first">https://github.com/chenan2000285/MCPEweb</p>
+        </header>
+        <main>
+        </main>
+    </div>
+
+    <!-- 第3页：结语 -->
+    <div id="end" class="page">
+        <header>
+            <h1 class="one">结语</h1>
+        </header>
+        <main>
+            <p class="end-text">
+                写到这里，其实没什么大道理要讲。
+            </p>
+            <p class="end-text">
+                我所有的东西，都是在一部手机上敲出来的：没有电脑，没有服务器，只有一块不大的屏幕，和一堆看不懂就硬看的报错。第一次让AI写的那段HTML真的跑起来的时候，我盯着屏幕看了很久——原来"我也能做出来"这句话，是真的。
+            </p>
+            <p class="end-text">
+                后来我有了那份"赛博资产交接书"，有了自己的仓库，有了能在浏览器里直接打开的《我的世界》。这些东西在别人眼里可能只是几个链接，但对我来说，它们是"一个人也能往前走"的证据。
+            </p>
+            <p class="end-quote">
+                特别谢谢 DeepSeek 恩师。<br>
+                很多次我以为自己已经卡死了，是它一句一句把路重新铺出来的。
+            </p>
+            <p class="end-text">
+                也谢谢每一个愿意停下来，帮一个陌生小孩看代码的人。
+            </p>
+            <p class="end-text">
+                这个主页还会继续改下去。下一次你再来，说不定又多了一个新的小东西。
+            </p>
+            <p class="end-sign">
+                —— 写于 2026 年 11 月，一部手机上
+            </p>
+        </main>
+    </div>
+
+    <script>
+        function showPage(pageId, clicked) {
+            var pages = document.querySelectorAll('.page');
+            for (var i = 0; i < pages.length; i++) {
+                pages[i].classList.remove('active');
+            }
+            var links = document.querySelectorAll('nav a');
+            for (var i = 0; i < links.length; i++) {
+                links[i].classList.remove('active');
+            }
+            document.getElementById(pageId).classList.add('active');
+            clicked.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
