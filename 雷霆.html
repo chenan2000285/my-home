@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>🐸 惊喜</title>
+  <style>
+    * { box-sizing: border-box; }
+
+    /* 开局：流动渐变背景 */
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a0033, #003b4d, #1a0033);
+      background-size: 300% 300%;
+      animation: bgMove 8s infinite;
+      font-family: sans-serif;
+      overflow: hidden;
+    }
+    @keyframes bgMove {
+      0%, 100% { background-position: 0% 50%; }
+      50%      { background-position: 100% 50%; }
+    }
+
+    /* 开奖后：整页变成照片（JS 给 body 加 .reveal 才会生效） */
+    body.reveal {
+      background: #000 url("已解冻.png") center / cover no-repeat;
+      animation: none;          /* 停止背景流动，不然照片会一直漂 */
+    }
+    body.reveal .card { display: none; }
+
+    /* 卡片：毛玻璃 + 霓虹发光 */
+    .card {
+      padding: 30px 40px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(10px);
+      color: #fff;
+      font-size: 24px;
+      text-shadow: 0 0 8px #0ff, 0 0 20px #0ff;
+      user-select: none;
+    }
+
+    .card.shake { animation: shake 0.4s; }
+    @keyframes shake {
+      0%, 100% { transform: translateX(0) rotate(0); }
+      25%      { transform: translateX(-8px) rotate(-4deg); }
+      75%      { transform: translateX(8px) rotate(4deg); }
+    }
+
+    .emoji {
+      position: fixed;
+      font-size: 32px;
+      pointer-events: none;
+      animation: fly 1.2s ease-out forwards;
+    }
+    @keyframes fly {
+      from { transform: translateY(0) scale(0.5); opacity: 1; }
+      to   { transform: translateY(-220px) scale(1.6); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card" id="card">点我一下 🤫</div>
+  <audio id="s" src="已解冻.mp3" loop></audio>
+
+  <script>
+    var card  = document.getElementById("card");
+    var music = document.getElementById("s");
+    var emojis = ["🤡", "💀", "🐸", "🎉", "👻", "💩"];
+    var count = 0;
+
+    document.addEventListener("click", function (e) {
+      count++;
+
+      // ★ 第 10 次：开奖！照片登场 + 音效开播
+      if (count === 10) {
+        document.body.classList.add("reveal");
+        music.play();
+        return;
+      }
+      if (count > 10) return;   // 已经开过奖了，后面点击不再响应
+
+      // 抖一下
+      card.classList.add("shake");
+      setTimeout(function () {
+        card.classList.remove("shake");
+      }, 400);
+
+      // 在点击位置冒一个随机表情
+      var s = document.createElement("span");
+      s.className = "emoji";
+      s.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      s.style.left = (e.clientX - 16) + "px";
+      s.style.top  = (e.clientY - 16) + "px";
+      document.body.appendChild(s);
+      setTimeout(function () { s.remove(); }, 1200);
+
+      // 铺垫台词
+      if (count === 5) card.textContent = "好了别点了 😅";
+      if (count === 8) card.textContent = "再点两下就知道了 🥲";
+      if (count === 9) card.textContent = "最后一下 👀";
+    });
+  </script>
+</body>
+</html>
